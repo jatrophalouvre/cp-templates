@@ -22,7 +22,7 @@ not finished
    - UFDS (rollbacks)
    - UFDS (on tree)
 
-3. General Techniques
+2. General Techniques
    - Mo's Algorithm
    - Mo's Algorithm (on tree)
    - Mo's Algorithm (updates)
@@ -30,8 +30,33 @@ not finished
    - Mo's Algorithm (UFDS)
    - Monotonic Deque
    - Queue Undo Trick
+  
+3. Graph Theory
+   - BFS
+   - BFS (0-1)
+   - Dial's Algorithm
+   - Dijkstra's Algorithm
+   - Dinic's Algorithm
+   - Floyd-Warshall Algorithm
+   - Johnson's Algorithm
+   - SPFA Algorithm
+
+5. Math
+   - Binary Mul & Exp
+   - Linear Prime Sieve
+   - Linear Prime Sieve (1e9)
+   - Matrix Mul & Exp
+
+6. Miscellaneous
 
 7. Trees
+   - Bridge Tree
    - Centroid Decomposition
    - Dynamic Connectivity
    - Heavy-light Decomposition
+   - LCA (FCB algorithm)
+   - LCA (binary lifting)
+   - Minimum-Diameter Spanning Tree
+   - Prim's Algorithm
+   - Tarjan's Algorithm
+   - Tree Rerooting
