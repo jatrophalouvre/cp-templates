@@ -1,12 +1,13 @@
-//livin' for the hope of it all
+// https://www.luogu.com.cn/problem/P5905
+// livin' for the hope of it all
 
 #include <iostream>
 #include <cstring>
 #include <queue>
 #include <utility>
 #include <vector>
-#define x first
-#define y second
+#define fir first
+#define sec second
 using namespace std;
 
 using ll = long long;
@@ -59,7 +60,7 @@ void dijkstra(int src)
     d[src]=0;
     while (q.size())
     {
-        int u=q.top().y; q.pop();
+        int u=q.top().sec; q.pop();
         if (vis[u]) continue;
         vis[u]=1;
         
