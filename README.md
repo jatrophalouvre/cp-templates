@@ -1,62 +1,73 @@
 not finished
 
 1. Data Structures
-   - Binary Search Tree
-   - Fenwick Tree (2D)
+   - 2D Fenwick Tree (point updates)
+   - 2D Fenwick Tree
    - Fenwick Tree (point updates)
    - Fenwick Tree
-   - Link-cut Tree
+   - Lichao Tree
+   - Link-Cut Tree
    - Merge-Sort Tree
    - Persistent Segment Tree
+   - Persistent UFDS
    - Segment Tree (AP updates)
    - Segment Tree Beats
-   - Segment Tree Merging
    - Segment Tree
    - Sparse Table
-   - Sparse Table (2D)
    - Sqrt Decomposition
-   - Sqrt Tree
    - Treap
    - Trie
-   - UFDS
    - UFDS (rollbacks)
-   - UFDS (on tree)
+   - UFDS
 
 2. General Techniques
+   - BSTA (parallel)
+   - Divide and Conquer
+   - Line Sweep
+   - Linear Scan
    - Mo's Algorithm
-   - Mo's Algorithm (on tree)
-   - Mo's Algorithm (updates)
-   - Mo's Algorithm (online)
-   - Mo's Algorithm (UFDS)
-   - Monotonic Deque
-   - Queue Undo Trick
+   - Monotonic Queue
   
 3. Graph Theory
-   - BFS
+   - A-star Algorithm
    - BFS (0-1)
+   - BFS (graph)
+   - Condensation Graph
    - Dial's Algorithm
+   - Dijkstra's Algorithm (multilevel)
    - Dijkstra's Algorithm
    - Dinic's Algorithm
+   - Eulerian Path
    - Floyd-Warshall Algorithm
    - Johnson's Algorithm
+   - Longest Path
    - SPFA Algorithm
 
-5. Math
-   - Binary Mul & Exp
-   - Linear Prime Sieve
-   - Linear Prime Sieve (1e9)
-   - Matrix Mul & Exp
+4. Math
+   - Arbitrary-Precision
+   - Binary Exp & Mul
+   - Matrices
+   - Prime Sieve
 
-6. Miscellaneous
+5. Misc
+   - Custom Hash
+   - Discretization
+   - Optimizations
+   - PBDS
+   - __int128
+  
+6. Search
+   - BFS (double-ended)
+   - BFS
+   - KMP Algorithm
+   - Rabin-Karp Algorithm
+   - Z Algorithm
 
-7. Trees
-   - Bridge Tree
+8. Trees
    - Centroid Decomposition
-   - Dynamic Connectivity
-   - Heavy-light Decomposition
+   - Difference Array (tree)
+   - Heavy-Light
    - LCA (FCB algorithm)
    - LCA (binary lifting)
-   - Minimum-Diameter Spanning Tree
    - Prim's Algorithm
-   - Tarjan's Algorithm
-   - Tree Rerooting
+   - Tarjan's Algorithm & DFS Tree
