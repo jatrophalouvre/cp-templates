@@ -58,7 +58,7 @@ int main()
     for (int a=0; a<n; a++) cin>>os[a];
     for (int a=0; a<m; a++)
     {
-        cin>>x[a]>>y[a]; x[a]--; y[a]--;
+        cin>>x[a]>>y[a];
         e[idx]=y[a]; ne[idx]=h[x[a]]; h[x[a]]=idx++;
         re[ridx]=x[a]; rne[ridx]=rh[y[a]]; rh[y[a]]=ridx++;
     }
