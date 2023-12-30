@@ -21,8 +21,7 @@ struct node
     
     node(int L, int R)
     {
-        l=L; r=R;
-        mid=(l+r)>>1;
+        l=L; r=R; mid=(l+r)>>1;
         lptr=rptr=nullptr;
     }
     void build()
