@@ -3,14 +3,14 @@
 
 #include <iostream>
 #include <cstdint>
-#include <cstring>
 #include <queue>
 using namespace std;
 
+using PII = pair<int, int>;
 const int N=100013, M=5000013, W=1013;
 int n, m;
-int h[N], e[M], ne[M], idx=0;
-int w[M], d[N];
+vector<PII> s[N];
+int d[N];
 
 void dial()
 {
@@ -28,12 +28,11 @@ void dial()
 		if (vis[u]) continue;
 		vis[u]=1;
 		
-		for (int a=h[u]; ~a; a=ne[a])
+		for (auto [v, w]:s[u])
 		{
-			int v=e[a];
-			if (d[v]>d[u]+w[a])
+			if (d[v]>d[u]+w)
 			{
-				d[v]=d[u]+w[a];
+				d[v]=d[u]+w;
 				q[d[v]%W].push(v); sz++;
 			}
 		}
@@ -42,13 +41,12 @@ void dial()
 
 int main()
 {
-	memset(h, -1, sizeof(h));
 	cin>>n>>m;
 	while (m--)
 	{
 		int x, y, z; cin>>x>>y>>z;
-		e[idx]=y; w[idx]=z; ne[idx]=h[x]; h[x]=idx++;
-		e[idx]=x; w[idx]=z; ne[idx]=h[y]; h[y]=idx++;
+		s[x].push_back({y, z});
+		s[y].push_back({x, z});
 	}
 	
 	dial();
