@@ -3,23 +3,19 @@
 
 #include <iostream>
 #include <cstring>
+#include <vector>
 using namespace std;
 
 using ll = long long;
 const int N=100013;
 int n, m;
-int h[N], e[N<<1], ne[N<<1], idx=0;
-ll s[N];
+vector<int> s[N];
+ll val[N];
 int seq[N], pre[N], post[N], i=0;
 
 struct node_seg
 {
-#define lv lptr->v
-#define rv rptr->v
-#define llazy lptr->lazy
-#define rlazy rptr->lazy
-    
-    int l, r, mid;
+	int l, r, mid;
     ll v, lazy;
     node_seg *lptr, *rptr;
     
@@ -30,18 +26,18 @@ struct node_seg
         if (l==r)
         {
             lptr=rptr=nullptr;
-            v=s[seq[l]];
+            v=val[seq[l]];
         }
         else
         {
             lptr=new node_seg(l, mid);
             rptr=new node_seg(mid+1, r);
-            v=lv+rv;
+            v=lptr->v+rptr->v;
         }
     }
     void update(int x, int y, ll val)
     {
-        if (l==x && y==r)
+        if (l==x && r==y)
         {
             lazy+=val;
             v+=val*(r-l+1);
@@ -55,7 +51,7 @@ struct node_seg
             lptr->update(x, mid, val);
             rptr->update(mid+1, y, val);
         }
-        v=lv+rv;
+        v=lptr->v+rptr->v;
     }
     ll query(int x, int y)
     {
@@ -68,10 +64,10 @@ struct node_seg
     void pushdown()
     {
         if (lazy==0) return;
-        llazy+=lazy;
-        lv+=lazy*(mid-l+1);
-        rlazy+=lazy;
-        rv+=lazy*(r-mid);
+        lptr->lazy+=lazy;
+        rptr->lazy+=lazy;
+        lptr->v+=lazy*(mid-l+1);
+        rptr->v+=lazy*(r-mid);
         lazy=0;
     }
 } *segtree;
@@ -90,9 +86,8 @@ struct node_hld
     void dfs_sz(int u)
     {
         sz[u]=1;
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto v:s[u])
         {
-            int v=e[a];
             if (v==p[u]) continue;
             
             dep[v]=dep[u]+1; p[v]=u;
@@ -106,11 +101,7 @@ struct node_hld
         seq[i]=u; pre[u]=i++;
         head[u]=H;
         if (heavy[u]!=-1) dfs_hl(heavy[u], H);
-        for (int a=h[u]; ~a; a=ne[a])
-        {
-            int v=e[a];
-            if (v!=p[u] && v!=heavy[u]) dfs_hl(v, v);
-        }
+        for (auto v:s[u]) if (v!=p[u] && v!=heavy[u]) dfs_hl(v, v);
         post[u]=i-1;
     }
     void update(int x, int y, ll val)
@@ -149,14 +140,13 @@ struct node_hld
 
 int main()
 {
-    memset(h, -1, sizeof(h));
     cin>>n>>m;
-    for (int a=0; a<n; a++) cin>>s[a];
+    for (int a=0; a<n; a++) cin>>val[a];
     for (int a=0; a<n-1; a++)
     {
         int x, y; cin>>x>>y;
-        e[idx]=y; ne[idx]=h[x]; h[x]=idx++;
-        e[idx]=x; ne[idx]=h[y]; h[y]=idx++;
+        s[x].push_back(y);
+        s[y].push_back(x);
     }
     
     hld=new node_hld();
