@@ -2,12 +2,12 @@
 // livin' for the hope of it all
 
 #include <iostream>
-#include <cstring>
+#include <vector>
 using namespace std;
 
 const int N=100013, L=26;
 int n, m;
-int h[N], e[N<<1], ne[N<<1], idx=0;
+vector<int> s[N];
 
 struct node
 {
@@ -29,9 +29,8 @@ struct node
     void dfs(int u, int p)
     {
         st[i][0]=u; pre[u]=i++;
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto v:s[u])
         {
-            int v=e[a];
             if (v==p) continue;
             dep[v]=dep[u]+1;
             dfs(v, u);
@@ -50,13 +49,12 @@ struct node
 
 int main()
 {
-    memset(h, -1, sizeof(h));
     cin>>n>>m;
     for (int a=0; a<n-1; a++)
     {
         int x, y; cin>>x>>y;
-        e[idx]=y; ne[idx]=h[x]; h[x]=idx++;
-        e[idx]=x; ne[idx]=h[y]; h[y]=idx++;
+        s[x].push_back(y);
+        s[y].push_back(x);
     }
     
     lca=new node();
