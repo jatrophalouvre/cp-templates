@@ -50,7 +50,7 @@ struct node
 	}
 } *fwtree;
 
-int main()
+signed main()
 {
 	fwtree=new node();
 	cin>>n>>m;
