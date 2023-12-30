@@ -15,8 +15,7 @@ using ll = long long;
 using PII = pair<ll, ll>;
 const int N=100013, M=5000013;
 int n, m;
-int h[N], e[M], ne[M], idx=0;
-ll w[M];
+vector<PII> s[N];
 
 ll prim()
 {
@@ -34,12 +33,11 @@ ll prim()
         if (vis[u]) continue;
         vis[u]=1;
         
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto [v, w]:s[u])
         {
-            int v=e[a];
-            if (!vis[v] && key[v]>w[a])
+            if (!vis[v] && key[v]>w)
             {
-                key[v]=w[a];
+                key[v]=w;
                 p[v]=u;
                 q.push({key[v], v});
             }
@@ -53,13 +51,12 @@ ll prim()
 
 int main()
 {
-    memset(h, -1, sizeof(h));
     cin>>n>>m;
     while (m--)
     {
         int x, y; ll z; cin>>x>>y>>z;
-        e[idx]=y; w[idx]=z; ne[idx]=h[x]; h[x]=idx++;
-        e[idx]=x; w[idx]=z; ne[idx]=h[y]; h[y]=idx++;
+        s[x].push_back({y, z});
+        s[y].push_back({x, z});
     }
     
     cout<<prim()<<endl;
