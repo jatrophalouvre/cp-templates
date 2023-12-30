@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <cstdint>
-#include <cstring>
 #include <queue>
 #include <utility>
 #include <vector>
@@ -15,8 +14,8 @@ using ll = long long;
 using PII = pair<ll, ll>;
 const int N=100013, M=5000013;
 int n, m;
-int h[N], e[M], ne[M], idx=0;
-ll w[M], d[N];
+vector<PII> s[N];
+ll d[N];
 
 void dijkstra()
 {
@@ -32,12 +31,11 @@ void dijkstra()
         if (vis[u]) continue;
         vis[u]=1;
         
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto [v, w]:s[u])
         {
-            int v=e[a];
-            if (d[v]>d[u]+w[a])
+            if (d[v]>d[u]+w)
             {
-                d[v]=d[u]+w[a];
+                d[v]=d[u]+w;
                 q.push({d[v], v});
             }
         }
@@ -46,13 +44,12 @@ void dijkstra()
 
 int main()
 {
-    memset(h, -1, sizeof(h));
     cin>>n>>m;
     while (m--)
     {
         int x, y; ll z; cin>>x>>y>>z;
-        e[idx]=y; w[idx]=z; ne[idx]=h[x]; h[x]=idx++;
-        e[idx]=x; w[idx]=z; ne[idx]=h[y]; h[y]=idx++;
+        s[x].push_back({y, z});
+        s[y].push_back({x, z});
     }
     
     dijkstra();
