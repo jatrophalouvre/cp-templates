@@ -5,13 +5,17 @@
 #include <cstdint>
 #include <cstring>
 #include <queue>
+#include <utility>
+#include <vector>
+#define fir first
+#define sec second
 using namespace std;
 
 using ll = long long;
+using PII = pair<ll, ll>;
 const int N=100013, M=5000013;
 int n, m;
-int h[N], e[M], ne[M], idx=0;
-int w[N];
+vector<PII> s[N];
 ll d[N];
 
 void bfs()
@@ -24,10 +28,9 @@ void bfs()
     while (q.size())
     {
         int u=q.front(); q.pop_front();
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto [v, w]:s[u])
         {
-            int v=e[a];
-            if (w[a]==0)
+            if (w==0)
             {
                 if (d[v]>d[u])
                 {
@@ -49,13 +52,12 @@ void bfs()
 
 int main()
 {
-    memset(h, -1, sizeof(h));
     cin>>n>>m;
     while (m--)
     {
         int x, y, z; cin>>x>>y>>z;
-        e[idx]=y; w[idx]=z; ne[idx]=h[x]; h[x]=idx++;
-        e[idx]=x; w[idx]=z; ne[idx]=h[y]; h[y]=idx++;
+        s[x].push_back({y, z});
+        s[y].push_back({x, z});
     }
     
     bfs();
