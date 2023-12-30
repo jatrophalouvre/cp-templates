@@ -2,7 +2,6 @@
 // livin' for the hope of it all
 
 #include <iostream>
-#include <cstring>
 #include <queue>
 #include <utility>
 #include <vector>
@@ -14,8 +13,8 @@ using ll = long long;
 using PII = pair<ll, ll>;
 const int N=3013, M=150013;
 int n, m;
-int h[N], e[M], ne[M], idx=0;
-ll w[M], rd[N], d[N];
+vector<PII> s[N];
+ll d[N], rd[N];
 
 bool spfa()
 {
@@ -32,12 +31,11 @@ bool spfa()
         int u=q.front(); q.pop();
         inq[u]=0;
         
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto [v, w]:s[u])
         {
-            int v=e[a];
-            if (rd[v]>rd[u]+w[a])
+            if (rd[v]>rd[u]+w)
             {
-                rd[v]=rd[u]+w[a];
+                rd[v]=rd[u]+w;
                 cnt[v]=cnt[u]+1;
                 if (cnt[v]>n) return 0;
                 if (!inq[v])
@@ -64,12 +62,11 @@ void dijkstra(int src)
         if (vis[u]) continue;
         vis[u]=1;
         
-        for (int a=h[u]; ~a; a=ne[a])
+        for (auto [v, w]:s[u])
         {
-            int v=e[a];
-            if (d[v]>d[u]+w[a])
+            if (d[v]>d[u]+w)
             {
-                d[v]=d[u]+w[a];
+                d[v]=d[u]+w;
                 q.push({d[v], v});
             }
         }
@@ -78,15 +75,14 @@ void dijkstra(int src)
 
 int main()
 {
-    memset(h, -1, sizeof(h));
     cin>>n>>m;
     while (m--)
     {
         int x, y; ll z; cin>>x>>y>>z;
-        e[idx]=y; w[idx]=z; ne[idx]=h[x]; h[x]=idx++;
-        e[idx]=x; w[idx]=z; ne[idx]=h[y]; h[y]=idx++;
+        s[x].push_back({y, z});
+        s[y].push_back({x, z});
     }
-    for (int v=0; v<n; v++) { e[idx]=v; w[idx]=0; ne[idx]=h[n]; h[n]=idx++; }
+    for (int v=0; v<n; v++) s[n].push_back({v, 0});
     
     if (!spfa())
     {
@@ -96,10 +92,9 @@ int main()
     
     for (int u=0; u<n; u++)
     {
-        for (int a=h[u]; ~a; a=ne[a])
+		for (int a=0; a<s[u].size(); a++)
         {
-            int v=e[a];
-            w[a]+=rd[u]-rd[v];
+            s[u][a].sec+=rd[u]-rd[s[u][a].fir];
         }
     }
     for (int u=0; u<n; u++)
