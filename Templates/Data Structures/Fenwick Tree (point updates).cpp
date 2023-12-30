@@ -2,20 +2,19 @@
 // livin' for the hope of it all
 
 #include <iostream>
-#include <cstring>
+#define int long long
 using namespace std;
 
-using ll = long long;
 const int N=100013;
 int n, m;
-ll s[N];
+int s[N];
 
 struct node
 {
-    ll v[N]={0};
+    int v[N]={0};
     
     node() {}
-    void update(int pos, ll val)
+    void update(int pos, int val)
     {
 		pos++;
         while (pos<=n)
@@ -24,9 +23,9 @@ struct node
             pos+=(pos&-pos);
         }
     }
-    ll query(int pos)
+    int query(int pos)
     {
-        ll ans=0;
+        int ans=0;
         while (pos>0)
         {
             ans+=v[pos];
@@ -34,14 +33,14 @@ struct node
         }
         return ans;
     }
-    ll query(int l, int r)
+    int query(int l, int r)
     {
 		l++; r++;
 		return query(r)-query(l-1);
 	}
 } *fwtree;
 
-int main()
+signed main()
 {
     fwtree=new node();
     cin>>n>>m;
@@ -56,7 +55,7 @@ int main()
         int t; cin>>t;
         if (t==1)
         {
-            int pos; ll x; cin>>pos>>x;
+            int pos, x; cin>>pos>>x;
             fwtree->update(pos, x-s[pos]);
             s[pos]+=x-s[pos];
         }
