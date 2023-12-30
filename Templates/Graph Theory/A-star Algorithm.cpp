@@ -78,6 +78,7 @@ int main()
         s[x].push_back({y, z});
         rs[y].push_back({x, z});
     }
+    
     dijkstra();
     astar();
     for (int a=1; a<=cnt; a++) cout<<ans[a]<<endl;
