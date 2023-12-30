@@ -2,13 +2,12 @@
 // livin' for the hope of it all
 
 #include <iostream>
-#include <cstring>
-#include <set>
+#include <vector>
 using namespace std;
 
 const int N=1000013, M=5000013;
 int n, m;
-int h[N], e[M], ne[M], idx=0;
+vector<int> s[N];
 int pre[N], low[N], i=0;
 bool vis[N]={0}, cut[N]={0};
 
@@ -18,9 +17,8 @@ void tarjan(int u, int p)
 	pre[u]=low[u]=i++;
 	int cnt=0;
 	
-	for (int a=h[u]; ~a; a=ne[a])
+	for (auto v:s[u])
 	{
-		int v=e[a];
 		if (v==p) continue;
 		if (!vis[v])
 		{
@@ -36,13 +34,12 @@ void tarjan(int u, int p)
 
 int main()
 {
-	memset(h, -1, sizeof(h));
 	cin>>n>>m;
 	while (m--)
 	{
-		int x, y; cin>>x>>y; x--; y--;
-		e[idx]=y; ne[idx]=h[x]; h[x]=idx++;
-		e[idx]=x; ne[idx]=h[y]; h[y]=idx++;
+		int x, y; cin>>x>>y;
+		s[x].push_back(y);
+		s[y].push_back(x);
 	}
 	
 	for (int a=0; a<n; a++) if (!vis[a]) tarjan(a, a);
