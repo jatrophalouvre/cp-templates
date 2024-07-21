@@ -3,26 +3,25 @@ not finished
 1. Data Structures
    - 2D Fenwick Tree (point updates)
    - 2D Fenwick Tree
+   - Cartesian Tree
+   - Convex Hull Trick (deque)
+   - Convex Hull Trick (LC)
    - Fenwick Tree (point updates)
    - Fenwick Tree
    - Lichao Tree
    - Link-Cut Tree
-   - Merge-Sort Tree
    - Persistent Segment Tree
    - Persistent UFDS
-   - Segment Tree (AP updates)
    - Segment Tree Beats
    - Segment Tree
    - Sparse Table
    - Sqrt Decomposition
    - Treap
    - Trie
-   - UFDS (rollbacks)
    - UFDS
 
 2. General Techniques
    - BSTA (parallel)
-   - Divide and Conquer
    - Line Sweep
    - Linear Scan
    - Mo's Algorithm
@@ -31,43 +30,41 @@ not finished
 3. Graph Theory
    - A-star Algorithm
    - BFS (0-1)
-   - BFS (graph)
    - Condensation Graph
    - Dial's Algorithm
-   - Dijkstra's Algorithm (multilevel)
    - Dijkstra's Algorithm
    - Dinic's Algorithm
    - Eulerian Path
    - Floyd-Warshall Algorithm
    - Johnson's Algorithm
-   - Longest Path
    - SPFA Algorithm
 
 4. Math
    - Arbitrary-Precision
    - Binary Exp & Mul
+   - Fast Fourier Transform
    - Matrices
    - Prime Sieve
 
 5. Misc
+   - __int128
    - Custom Hash
    - Discretization
    - Optimizations
    - PBDS
-   - __int128
-  
-6. Search
+   - Stress Testing
+
+7. Search
+   - Aho-Corasick Automaton
    - BFS (double-ended)
-   - BFS
    - KMP Algorithm
    - Rabin-Karp Algorithm
    - Z Algorithm
 
-8. Trees
+9. Trees
    - Centroid Decomposition
-   - Difference Array (tree)
    - Heavy-Light
-   - LCA (FCB algorithm)
    - LCA (binary lifting)
+   - LCA (FCB algorithm)
    - Prim's Algorithm
    - Tarjan's Algorithm & DFS Tree
